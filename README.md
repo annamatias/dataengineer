@@ -2,8 +2,7 @@
 
 <p align="center"><img width="531" alt="image" src="https://user-images.githubusercontent.com/53863170/215788556-6f3e3692-123d-4e7b-bc7e-69b70960260f.png"></p>
 
-<p align="center">Aprenda tudo sobre Engenharia de Dados, utilizando ferramentas mais atuais e muito mais.
-Códigos em Python e Scala.</p>
+<p align="center">Aprenda tudo sobre Engenharia de Dados, utilizando ferramentas mais atuais e muito mais.</p>
 
 
 ## Backlog
@@ -33,7 +32,7 @@ Códigos em Python e Scala.</p>
 
 1. Domain Drive Design
 2. Data Driven
-3. Event Data
+3. Event Driven
 4. Data Mesh
 
 ---
