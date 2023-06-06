@@ -1,4 +1,5 @@
 # Data Engineer - Google Cloud Platform
+
 <p align="center">Aprenda tudo sobre Engenharia de Dados, utilizando ferramentas mais atuais e muito mais.</p>
 
 # Case: Indicador de Custo do Crédito
@@ -12,6 +13,7 @@ Esse projeto visa trazer informações do [Banco Central do Brasil](https://dado
  **Fonte: Banco Central do Brasil – Departamento de Estatísticas**
 
 ---
+
 ## Motivação
 
 <p> A maior motivação para esse projeto é poder deixar aqui tudo que eu sei e aprendi na área de dados para outras pessoas, isso vai ajudar quem está aprendendo, e também é um lugar colaborativo. Onde você também pode melhorar o que já tem.
@@ -19,16 +21,21 @@ Esse projeto visa trazer informações do [Banco Central do Brasil](https://dado
 Neste projeto estou utilizando o Google Colab, GCP para armazenar dados de Big Data e o DataBricks para visualizar e manipular via SQL.
 
 ---
+
 ## Pré-requisitos
+
 Antes de começar a utilizar deste projeto, confira se atende os seguintes requisitos:
+
 - Tenha uma conta na Google e no DataBricks
 - Saiba programar em `Python`
 - Noções básicas sobre `Apache Spark, GCP, Data Lake, DataBricks`
 
 ---
+
 ## Configurando Spark no Google Colab
 
-### Instalar as dependências:
+### Instalar as dependências
+
 Aqui é necessário instalarmos o Java antes, porque o Spark utiliza do Java.
 
 `!apt-get update -qq`
@@ -41,7 +48,8 @@ Aqui é necessário instalarmos o Java antes, porque o Spark utiliza do Java.
 
 `!pip install -q findspark`
 
-### Declarar variáveis de ambiente:
+### Declarar variáveis de ambiente
+
 Para o nosso notebook funcionar da forma correta, temos que declarar o Java e Spark como variável de ambiente, assim ele não vai dar erro ao executar por não encontrar dependências.
 
 `import os`
@@ -57,6 +65,7 @@ Para o nosso notebook funcionar da forma correta, temos que declarar o Java e Sp
 `findspark.init()`
 
 ---
+
 ## Data Source - Drive
 
 Nesse projeto, estou utilizando do Google Drive, para colocar o arquivo CSV em uma pasta e realizar a leitura.
@@ -72,9 +81,10 @@ Iremos em 🗂️`Arquivos`, no seu canto superior esquerdo, e iremos na pasta d
 `drive.mount('/content/drive')`
 
 ---
+
 ## Criando uma Sessão Spark
 
-`from pyspark.sql import SparkSession `
+`from pyspark.sql import SparkSession`
 
 `spark = SparkSession.builder
   .master('local [*]') \
@@ -86,7 +96,9 @@ Temos aqui um exemplo que podemos colocar o nome na nossa sessão, utilizando o 
 O master com o local[*] serve para pegar todas as CPU’s disponíveis, posso deixar vazio que ele vai entender ou então colocar uma quantidade, ele vai funcionar também.
 
 ---
+
 ## Leitura CSV em Spark
+
 O caminho relativo você pode copiar, clicando com o botão direito no próprio arquivo.
 
 `path = '/content/drive/MyDrive/data_sources/banco_central/credito_direcionado/indicador_custo.csv'`
@@ -94,6 +106,7 @@ O caminho relativo você pode copiar, clicando com o botão direito no próprio 
 `df = spark.read.csv(path, sep=';', inferSchema=True)`
 
 ---
+
 ## Transformações em Spark
 
 Abrindo o arquivo do notebook no colab, você vai conseguir conferir todas as transformações desse projeto.
@@ -107,11 +120,13 @@ Incluindo:
 - Cálculos
 
 ---
+
 ### Referências
 
 [build-a-data-lake-on-gcp](https://cloud.google.com/architecture/build-a-data-lake-on-gcp?hl=pt-br#cloud-storage-as-data-lake)
 
 ---
+
 ## Autor
 
 - **Anna Karoliny (@annakaroliny.tech)** - _Mentora, Desenvolvedora e Engenheira de Dados_
