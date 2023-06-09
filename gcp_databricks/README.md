@@ -1,6 +1,8 @@
 # Notebook Google Colab
 
-<p align="center">ELT utilizando GCP e Databricks </p>
+<p align="center"><img width="1009" alt="image" src="https://github.com/annamatias/dataengineer-google-cloud/assets/53863170/965192d1-941f-4410-a35a-38a3b4794a11"></p>
+
+<p align="center">ELT utilizando GCP,Python, Apache Spark, Delta e Databricks </p>
 
 # Sobre
 
@@ -30,15 +32,18 @@ Depois que criamos nossa conta, ele já cria um projeto automaticamente, para te
 
 No canto superior direito, ao lado esquerdo da sua foto de perfil da conta do google, temos um menu, iremos clicar nele e ir até **Configuração do projeto**, conforme imagem abaixo. Eu coloquei o nome de **Databricks with GCP**, fique a vontade para escolher o seu.
 
-imagem 1 - Acessando configurações
+<p align="center"><img width="489" alt="image" src="https://github.com/annamatias/dataengineer-google-cloud/assets/53863170/890fba52-e43d-4fcb-9ded-6eb3fcdb5aee"></p>
+<p align="center">imagem 1 - Acessando configurações</p>
 
-imagem 2 - Alterando nome do projeto e salvando
+<p align="center"><img width="542" alt="image" src="https://github.com/annamatias/dataengineer-google-cloud/assets/53863170/196173f6-9ca3-421d-bc03-4eec19d29aa0"></p>
+<p align="center">imagem 2 - Alterando nome do projeto e salvando</p>
 
 ## Ativando Databricks
 
 No canto superior esquerdo, temos um menu bar, acessando ele, vamos atrás do **Databricks**, o GCP te trás opção de fixar para aparecer logo em cima. Eu fixei para encontra-lo com maior facilidade.
 
-imagem 3 - Databricks fixado
+<p align="center"><img width="410" alt="image" src="https://github.com/annamatias/dataengineer-google-cloud/assets/53863170/fc938654-795f-4a00-b081-d8ef7fa1e317"></p>
+<p align="center">imagem 3 - Databricks fixado</p>
 
 Depois que acessar o databricks, clique em Assinar e concorde com os termos e condições.
 
