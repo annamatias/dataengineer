@@ -85,6 +85,17 @@ Fique sempre atento a esse prazo, para que não tenha eventuais cobranças futur
 
 O próprio google alega que depois de 90 dias caso não tenha o upgrade, ele exclui todos os seus projetos, mas faça isso antes..."O seguro morreu de velho" - Como diz meus pais.
 
+## Integração GitHub e Databricks
+
+É possível realizar a conexão entre o repositório do Github dentro do databricks, mas se você estive utilizando a versão gratuita talvez tenha limitações para conseguir realizar a integração.
+
+Para adicionar, devemos ir no *Espaço de trabalho* e ir na sessão de repositórios, como a imagem abaixo.
+![image](https://github.com/annamatias/dataengineer-google-cloud/assets/53863170/fe5c7492-45f6-4ba3-852b-52d1171b5ca4)
+
+Depois iremos adicionar as informações do repositório, e criar um nono repositório.
+
+<img width="894" alt="image" src="https://github.com/annamatias/dataengineer-google-cloud/assets/53863170/7f775696-4a74-4f59-826c-721b6b0419f8">
+
 ---
 
 ### Referências
