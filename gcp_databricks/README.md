@@ -117,7 +117,7 @@ Você pode seguir esse passo a passo da própria comunidade: https://developer.s
 
 ### Referências
 
-- [Spotify API - Dados de música e reprodução]([https://world.openfoodfacts.org/data](https://developer.spotify.com/)
+- [Spotify API - Dados de música e reprodução](https://developer.spotify.com/)
 
 ---
 
