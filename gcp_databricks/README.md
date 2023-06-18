@@ -7,7 +7,13 @@
 # Sobre
 
 O projeto foi desenvolvido com GCP e Databricks, utilizando Pyspark para manipulação dos arquivos.
-Nesse projeto, estamos realizando um ETL, obtendo informações sobre alimentos de todo o mundo. Eles fornecem uma API gratuita que permite acessar dados sobre produtos alimentícios, ingredientes, informações nutricionais, rótulos, certificações e muito mais.
+Nesse projeto, estamos realizando um ETL, obtendo informações sobre A API da Web do Spotify fornece uma ampla gama de funcionalidades para desenvolvedores, incluindo:
+
+- Recuperar dados de seu artista, álbum ou show favorito.
+- Pesquise conteúdo do Spotify.
+- Controle e interaja com a reprodução, reproduza e retome, busque uma posição ou recupere sua fila.
+- Gerencie sua biblioteca pessoal, criando uma nova lista de reprodução e adicionando suas faixas favoritas a ela.
+- Receba recomendações com base na música que você mais ouve.
 
 Até então, não é ideial utilizar spark para a pequena quantidade de dados, o ideial é acima de GB (Giga Bytes), mas é um projeto, visa trazer aprendizados da vida real, com conteúdo técnico.
 
@@ -97,10 +103,21 @@ Depois iremos adicionar as informações do repositório, e criar um nono reposi
 <img width="894" alt="image" src="https://github.com/annamatias/dataengineer-google-cloud/assets/53863170/7f775696-4a74-4f59-826c-721b6b0419f8">
 
 ---
+## Acessando API Spotify
+
+Os dados utilizados nesse projeto são do Spotify, portanto é necessário criar uma conta, acessar esse [link](https://developer.spotify.com/documentation/web-api), seguir os passos descritos, como ler e aceitar os termos e condições
+
+<img width="1363" alt="image" src="https://github.com/annamatias/dataengineer-google-cloud/assets/53863170/d0f7b358-0f90-4c5a-a906-8740cf222f5a">
+
+Feito o passo acima, iremos criar um aplicativo, depois de criar seu aplicativo, você terá acesso às credenciais do aplicativo. Eles serão necessários para a autorização da API para obter um token de acesso.
+Você pode seguir esse passo a passo da própria comunidade: https://developer.spotify.com/documentation/web-api/tutorials/getting-started
+
+
+---
 
 ### Referências
 
-- [Open Food Facts](https://world.openfoodfacts.org/data)
+- [Spotify API - Dados de música e reprodução]([https://world.openfoodfacts.org/data](https://developer.spotify.com/)
 
 ---
 
