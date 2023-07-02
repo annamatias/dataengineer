@@ -32,4 +32,4 @@ Aqui você encontra diversas informações, como fazer em Pyspark, Python e outr
 
 ## Autor
 
-- **Anna Karoliny (@annakaroliny.tech)** - _Mentora, Desenvolvedora e Engenheira de Dados_
+- **Anna Karoliny** - _Mentora, Professora, Desenvolvedora e Engenheira de Dados_
