@@ -21,8 +21,10 @@ Para executar o meu projeto, basta realizar o clone do repositório ou então sa
 
 ---
 
-### Referências
+## Referências
 
+---
+### Banco
 - https://calculojuridico.com.br/como-calcular-emprestimos-financiamentos/
 - https://www.infomoney.com.br/planilhas/calcular-emprestimos/
 - https://ninjadoexcel.com.br/planilha-amortizacao-emprestimo-excel/
@@ -31,4 +33,4 @@ Para executar o meu projeto, basta realizar o clone do repositório ou então sa
 
 ## Autor
 
-- **Anna Karoliny (@annakaroliny.tech)** - _Mentora, Desenvolvedora e Engenheira de Dados_
+- **Anna Karoliny** - _Mentora, Professora, Desenvolvedora e Engenheira de Dados_

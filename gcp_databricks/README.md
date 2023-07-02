@@ -123,4 +123,4 @@ Você pode seguir esse passo a passo da própria comunidade: https://developer.s
 
 ## Autor
 
-- **Anna Karoliny (@annakaroliny.tech)** - _Mentora, Desenvolvedora e Engenheira de Dados_
+- **Anna Karoliny** - _Mentora, Professora, Desenvolvedora e Engenheira de Dados_
