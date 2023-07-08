@@ -1,6 +1,8 @@
 # Data Engineer - Google Cloud Platform
 
-<p align="center">Este repositório contém vários tipos de arquitetura Big Data, utilizando o Google Colab e Google Cloud Platform</p>
+<p align="center">Este repositório contém vários tipos de arquitetura Big Data, utilizando o Google Colab e Google Cloud Platform
+<img width="1090" alt="image" src="https://github.com/annamatias/dataengineer-google-cloud/assets/53863170/ddfd17a2-3681-42f7-9f3a-2d716beaf791">
+</p>
 
 ---
 
