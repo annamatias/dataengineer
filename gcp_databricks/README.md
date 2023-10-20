@@ -1,7 +1,5 @@
 # Notebook Google Colab
 
-<p align="center"><img width="1009" alt="image" src="https://github.com/annamatias/dataengineer-google-cloud/assets/53863170/965192d1-941f-4410-a35a-38a3b4794a11"></p>
-
 <p align="center">ELT utilizando GCP,Python, Apache Spark, Delta e Databricks </p>
 
 # Sobre
