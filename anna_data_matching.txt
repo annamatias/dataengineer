@@ -1,0 +1,11 @@
+Olá! Segue link do colab com autorização para editar:
+Importante: Realizei com a ferramenta Pyspark e na leitura dos dados,
+estava recebendo erro ao realizar a leitura, então se for executar,
+peço para que realize o import na pasta sample_data do seu drive,
+para a devida execução com sucesso. Obrigada!
+
+- https://colab.research.google.com/drive/1MX561e-TeAAf2M8VY0y7bMD9JWXwiZxK#scrollTo=B1CVKuAHFrAB
+
+Eu também coloquei o notebook no meu github:
+
+- https://github.com/annamatias/dataengineer/blob/main/data_matching.ipynb
