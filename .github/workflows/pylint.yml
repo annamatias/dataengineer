@@ -15,7 +15,7 @@ jobs:
       - name: Python lint
         uses: ricardochaves/python-lint@v1.4.0
         with:
-          python-root-list: "gcp"
+          python-root-list: "gcp, colab"
           use-pylint: true
           use-pycodestyle: false
           use-flake8: true
