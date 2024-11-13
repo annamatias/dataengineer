@@ -8,6 +8,13 @@ Esta API permite criar quizzes, votar em alternativas de um quiz, visualizar os 
 - **Redis**: Banco de dados em memória utilizado para armazenar os dados dos quizzes e os votos.
 - **Python**: Linguagem de programação utilizada para construir a aplicação.
 
+## Executar o Projeto
+
+- **Criar um venv**: `python3 -m venv path/to/venv`
+- **Ativar o ambiente virtual**: `source api_redis/path/to/venv/bin/activate`
+- **Instalar o dependencias**: `pip install fastapi redis uvicorn`
+- **Executar na linha de comando para execução do FastAPI**: `uvicorn arquivo_teste:app --reload`
+
 ## Endpoints da API
 
 ### 1. **Criar Quiz**
