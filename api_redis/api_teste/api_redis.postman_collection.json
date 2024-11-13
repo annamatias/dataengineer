@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "7604c4de-5d39-41f7-b769-3fa3c21661d9",
+		"name": "api_redis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13218737"
+	},
+	"item": [
+		{
+			"name": "votar em alguma pergunta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"question_index\": 0,\n  \"alternative\": \"A\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/quizzes/geografia_do_mundo/votar/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"quizzes",
+						"geografia_do_mundo",
+						"votar",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar perguntas",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Capitais do Mundo\",\n  \"description\": \"Quiz sobre as capitais dos países do mundo.\",\n  \"questions\": [\n    {\n      \"question\": \"Qual é a capital do Japão?\",\n      \"alternatives\": [\"A. Tóquio\", \"B. Pequim\", \"C. Seul\", \"D. Bangcoc\"],\n      \"correct_answer\": \"A\"\n    },\n    {\n      \"question\": \"Qual é a capital da Austrália?\",\n      \"alternatives\": [\"A. Melbourne\", \"B. Sydney\", \"C. Canberra\", \"D. Brisbane\"],\n      \"correct_answer\": \"C\"\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/quizzes/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"quizzes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lista de perguntas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/quizzes/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"quizzes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "apagar todos os quizzes",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/quizzes/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"quizzes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obter um quizz especifico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/quizzes/{quiz_id}",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"quizzes",
+						"{quiz_id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contador de voto em tempo real",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/quizzes/{quiz_id}/resultados/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"quizzes",
+						"{quiz_id}",
+						"resultados",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
