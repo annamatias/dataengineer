@@ -22,7 +22,7 @@ jobs:
           use-black: false
           use-mypy: false
           use-isort: false
-          extra-pylint-options: "--max-line-length=120 --disable=C0301,C0116,R0913,R0917 --ignore=path/to/venv"
+          extra-pylint-options: "--max-line-length=120 --disable=C0301,C0116,R0913,R0917 --ignore=/api_redis/path/to/venv"
           extra-pycodestyle-options: ""
           extra-flake8-options: "--max-line-length=120 --ignore=E501 --exclude=gcp,colab"
           extra-black-options: ""
