@@ -1,0 +1,10 @@
+[MASTER]
+
+init-hook='import sys; sys.path.append("/path/to/venv/lib/python3.10/site-packages")'
+
+ignore=__pycache__,.git
+ignore-patterns=.*(__init__\.py|__pycache__).*
+
+[MESSAGES CONTROL]
+
+disable=import-error,missing-docstring,R0913,R0917
