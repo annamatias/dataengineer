@@ -1,28 +1,25 @@
-# Quiz API
+# Quiz API com FastAPI e Redis
 
-Este projeto implementa uma API de quizzes usando FastAPI e Redis para armazenar e gerenciar quizzes, perguntas, alternativas de respostas e resultados em tempo real. Ele permite a criação, votação, consulta de resultados e rankings de quizzes, além de controlar o tempo de resposta dos usuários.
+Este projeto implementa uma API para quizzes utilizando **FastAPI** e **Redis** para armazenar e gerenciar quizzes, perguntas, alternativas de respostas e resultados em tempo real. Ele permite criar quizzes, registrar votos, consultar resultados e rankings, além de controlar o tempo de resposta dos usuários.
+
+---
 
 ## Pré-requisitos
 
 Antes de rodar o projeto, você precisará de:
 
-- Python 3.7+
-- Redis: um servidor Redis ativo para armazenar os dados (Você pode usar o Redis em nuvem ou localmente).
-- Instale as dependências do projeto:
+- **Python 3.7+**
+- **Redis**: Um servidor Redis ativo para armazenar os dados (você pode usar Redis na nuvem ou localmente).
 
-```bash
-pip install fastapi redis uvicorn
-````
+Instale as dependências necessárias com o seguinte comando:
 
-## Como Rodar
+- `pip install fastapi redis uvicorn`
 
-Para rodar o servidor FastAPI, execute:
+Para iniciar o servidor FastAPI, execute o comando:
 
-```bash
-uvicorn main:app --reload
-```
+- `uvicorn main:app --reload`
 
-Isso iniciará a API no endereço <http://127.0.0.1:8000>.
+A aplicação estará disponível no endereço: <http://127.0.0.1:8000>.
 
 # Endpoints
 
@@ -31,7 +28,7 @@ Isso iniciará a API no endereço <http://127.0.0.1:8000>.
 
 Cria um ou mais quizzes, cada um com suas respectivas perguntas e alternativas.
 
-Body (JSON):
+Exemplo de Body (JSON):
 
 ```json
 {
@@ -55,21 +52,21 @@ Body (JSON):
 }
 ```
 
-Resposta (JSON):
+Exemplo de Resposta (JSON):
 
 ```json
 {
   "message": "Quizzes criados com sucesso!",
   "quiz_ids": ["quiz:quiz_de_exemplos"]
 }
-```
+````
 
 2. Obter Todos os Quizzes
 `GET /quizzes/`
 
-Obtém todos os quizzes armazenados.
+Retorna todos os quizzes armazenados.
 
-Resposta (JSON):
+Exemplo de Resposta (JSON):
 
 ```json
 {
@@ -86,9 +83,9 @@ Resposta (JSON):
 3. Obter Quiz Específico
 `GET /quizzes/{quiz_id}`
 
-Obtém um quiz específico baseado no quiz_id.
+Obtém os detalhes de um quiz específico pelo ID.
 
-Resposta (JSON):
+Exemplo de Resposta (JSON):
 
 ```json
 {
@@ -103,18 +100,19 @@ Resposta (JSON):
 4. Votar em uma Alternativa
 `POST /quizzes/{quiz_id}/votar/`
 
-Registra o voto de um usuário para uma pergunta específica.
+Registra o voto de um usuário em uma pergunta específica de um quiz.
 
 Parâmetros:
 
-quiz_id: ID do quiz
-question_index: Índice da pergunta no quiz
-alternative: Alternativa selecionada
-user_id: ID do usuário
+- quiz_id: ID do quiz.
+- question_index: Índice da pergunta no quiz.
+- alternative: Alternativa selecionada.
+- user_id: ID do usuário.
 
-Body (JSON):
+Exemplo de Body (JSON):
 
 ```json
+
 {
   "question_index": 0,
   "alternative": "A",
@@ -122,7 +120,7 @@ Body (JSON):
 }
 ```
 
-Resposta (JSON):
+Exemplo de Resposta (JSON):
 
 ```json
 {
@@ -133,9 +131,9 @@ Resposta (JSON):
 5. Visualizar Resultados
 `GET /quizzes/{quiz_id}/resultados/`
 
-Obtém os resultados (votos) de todas as perguntas de um quiz.
+Retorna os resultados (votos) de todas as perguntas de um quiz.
 
-Resposta (JSON):
+Exemplo de Resposta (JSON):
 
 ```json
 {
@@ -156,9 +154,9 @@ Resposta (JSON):
 6. Ranking de Alternativas Mais Votadas
 `GET /quizzes/{quiz_id}/ranking/alternativas/`
 
-Obtém o ranking de alternativas mais votadas para cada pergunta de um quiz.
+Retorna o ranking de alternativas mais votadas para cada pergunta de um quiz.
 
-Resposta (JSON):
+Exemplo de Resposta (JSON):
 
 ```json
 {
@@ -175,9 +173,9 @@ Resposta (JSON):
 7. Ranking de Questões Mais Acertadas
 `GET /quizzes/{quiz_id}/ranking/questoes/`
 
-Obtém o ranking de questões mais acertadas por todos os usuários.
+Retorna o ranking de questões mais acertadas pelos usuários.
 
-Resposta (JSON):
+Exemplo de Resposta (JSON):
 
 ```json
 {
@@ -193,9 +191,9 @@ Resposta (JSON):
 8. Ranking de Abstenções
 `GET /quizzes/{quiz_id}/ranking/abstencao/`
 
-Obtém o ranking de questões com mais abstenções de votos.
+Retorna o ranking de questões com mais abstenções.
 
-Resposta (JSON):
+Exemplo de Resposta (JSON):
 
 ```json
 {
@@ -211,9 +209,9 @@ Resposta (JSON):
 9. Ranking de Tempo Médio de Resposta
 `GET /quizzes/{quiz_id}/ranking/tempo_medio/`
 
-Obtém o ranking de tempo médio de resposta por questão.
+Retorna o tempo médio de resposta por questão.
 
-Resposta (JSON):
+Exemplo de Resposta (JSON):
 
 ```json
 {
@@ -229,9 +227,9 @@ Resposta (JSON):
 10. Excluir Todos os Quizzes
 `DELETE /quizzes/`
 
-Exclui todos os quizzes armazenados no Redis.
+Remove todos os quizzes armazenados no Redis.
 
-Resposta (JSON):
+Exemplo de Resposta (JSON):
 
 ```json
 {
@@ -242,9 +240,9 @@ Resposta (JSON):
 11. Excluir Todos os Votos e Respostas de Usuários
 `DELETE /quizzes/votos-e-respostas/`
 
-Exclui todos os votos e respostas de usuários armazenadas no Redis.
+Remove todos os votos e respostas de usuários.
 
-Resposta (JSON):
+Exemplo de Resposta (JSON):
 
 ```json
 {
@@ -252,37 +250,8 @@ Resposta (JSON):
 }
 ```
 
-# Como Funciona?
-
-O projeto utiliza o Redis para armazenar e gerenciar os dados dos quizzes, como:
-
-- Quizzes e suas perguntas
-- Alternativas e seus votos
-- Tempo de resposta dos usuários
-- Rankings de questões e alternativas
-
 # Tecnologias Utilizadas
 
-- FastAPI: Framework para construir a API REST.
-- Redis: Banco de dados em memória para armazenar os dados de quizzes, votos e rankings.
-- Uvicorn: Servidor ASGI para rodar o FastAPI.
-
----
-
-# Próximos Passos
-
-- Testar:
-  - Para cada pergunta, será mantido um contador para cada alternativa.
-
-- Adicionar:
-  - Uma vez o voto realizado, ele não poderá ser alterado;
-  - Alunos com maior acerto e mais rápidos: rank final dos alunos;
-  - Alunos com maior acerto: Independente do tempo que levaram para responder cada pergunta;
-  - Alunos mais rápidos: Independente do número de acertos;
-
-- Verificar erro 500
-  - <http://127.0.0.1:8000/quizzes/quiz_de_geografia/resultados/>
-  - <http://127.0.0.1:8000/quizzes/quiz_de_geografia/ranking/alternativas/>
-
-- Verificar tempo medio
-  - <http://127.0.0.1:8000/quizzes/quiz_de_geografia/ranking/tempo_medio/>
+- FastAPI: Framework para construção da API.
+- Redis: Banco de dados em memória para armazenamento de quizzes, votos e rankings.
+- Uvicorn: Servidor ASGI para executar a aplicação FastAPI.
