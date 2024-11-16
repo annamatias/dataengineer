@@ -1,12 +1,9 @@
 import os
 import json
 import pytest
-import time
 from dotenv import load_dotenv
-from datetime import timedelta
 from fastapi.testclient import TestClient
-from api.main import app, RedisClient, QuizManager, DeleteQuiz
-from redis import Redis
+from api.main import app, RedisClient
 
 
 load_dotenv()
