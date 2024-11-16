@@ -2,8 +2,8 @@
 
 init-hook='import sys; sys.path.append("/path/to/venv/lib/python3.10/site-packages")'
 
-ignore=__pycache__,.git,venv,api_redis/path/to/venv/lib/python3.10/site-packages
-ignore-patterns=.*(__init__\.py|__pycache__).*
+ignore=__pycache__,.git
+ignore-patterns=.*(__init__\.py|__pycache__).*,path/to/venv/lib/python3.10/site-packages
 
 [MESSAGES CONTROL]
 
