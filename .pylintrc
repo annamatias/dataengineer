@@ -7,4 +7,4 @@ ignore-patterns=.*(__init__\.py|__pycache__).*
 
 [MESSAGES CONTROL]
 
-disable=import-error,missing-docstring
+disable=import-error,missing-docstring,R0913,R0917
