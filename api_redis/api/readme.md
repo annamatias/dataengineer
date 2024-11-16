@@ -14,10 +14,15 @@ Antes de rodar o projeto, você precisará de:
 Instale as dependências necessárias com o seguinte comando:
 
 - `pip install fastapi redis uvicorn`
+- `pip install python-dotenv`
 
 Para iniciar o servidor FastAPI, execute o comando:
 
 - `uvicorn main:app --reload`
+
+Caso você tiver problemas com o dotenv não estar funcionando com o modulo do uvicorn, tente utilizar o seguinte comando:
+
+- `python3 -m uvicorn main:app --reload`
 
 A aplicação estará disponível no endereço: <http://127.0.0.1:8000>.
 

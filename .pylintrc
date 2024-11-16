@@ -1,0 +1,6 @@
+[MASTER]
+# Lista de diretórios onde Pylint irá procurar por pacotes
+init-hook='import sys; sys.path.append("/path/to/venv/lib/python3.10/site-packages")'
+
+[MESSAGES CONTROL]
+disable=import-error

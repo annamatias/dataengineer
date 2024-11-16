@@ -1,10 +1,17 @@
+import os
 import json
 import time
 import redis
 from redis import Redis
 from typing import List, Dict
+from dotenv import load_dotenv
 from datetime import timedelta
 from fastapi import FastAPI, HTTPException
+
+load_dotenv()
+redis_host = os.getenv('REDIS_HOST')
+redis_port = os.getenv('REDIS_PORT')
+redis_password = os.getenv('REDIS_PASSWORD')
 
 
 class RedisClient:
@@ -16,9 +23,9 @@ class RedisClient:
 
 
 redis_client = RedisClient(
-    host='redis-17224.c93.us-east-1-3.ec2.redns.redis-cloud.com',
-    port=17224,
-    password='UtRsPtFRSlKJWTCc21uWvkiO4jyGgfA3'
+    host=redis_host,
+    port=int(redis_port),
+    password=redis_password
 ).get_client()
 
 
@@ -135,6 +142,64 @@ class QuizManager:
         return {"quiz": json.loads(quiz_data)}
 
 
+class DeleteQuiz:
+    def __init__(self, redis_client):
+        self.redis_client = redis_client
+
+    def delete_all_votes_and_user_responses(self):
+        vote_keys = self.redis_client.keys("vote:*")
+        user_response_keys = self.redis_client.keys("user_responses:*")
+
+        for key in vote_keys:
+            self.redis_client.delete(key)  # Apaga o voto
+
+        for key in user_response_keys:
+            self.redis_client.delete(key)  # Apaga a resposta do usuário
+
+        return {"message": "Todos os votos e respostas de usuários foram apagados."}
+
+    def delete_all_responses_time_and_answers(self):
+        correct_answers_keys = self.redis_client.keys("correct_answers:*")
+        response_time_keys = self.redis_client.keys("response_time:*")
+        response_time_rank_keys = self.redis_client.keys(
+            "response_time_rank:*")
+
+        for key in correct_answers_keys:
+            self.redis_client.delete(key)
+
+        for key in response_time_keys:
+            self.redis_client.delete(key)
+
+        for key in response_time_rank_keys:
+            self.redis_client.delete(key)
+
+        return {"message": "Todos as respostas de tempo e perguntas corretas foram apagados."}
+
+    def delete_all_quizzes(self):
+        quiz_keys = self.redis_client.keys("quiz:*")
+
+        for key in quiz_keys:
+            self.redis_client.delete(key)  # Apaga o quiz
+
+        return {"message": "Todos os quizzes foram apagados."}
+
+    def delete_quiz(self, quiz_id: str):
+        # Verifica se o quiz existe no Redis
+        if not self.redis_client.exists(quiz_id):
+            raise HTTPException(status_code=404, detail="Quiz não encontrado.")
+
+        # Apaga o quiz específico
+        self.redis_client.delete(quiz_id)
+
+        # Apaga também as chaves associadas aos contadores de votos das perguntas desse quiz
+        quiz_data = json.loads(self.redis_client.get(quiz_id))
+        for i, question in enumerate(quiz_data['questions']):
+            # Apaga os contadores de votos
+            self.redis_client.delete(f"vote:{quiz_id}:{i}")
+
+        return {"message": f"Quiz '{quiz_id}' foi apagado com sucesso."}
+
+
 class RankingService:
     def __init__(self, redis_service: RedisQuizService):
         self.redis_service = redis_service
@@ -237,6 +302,7 @@ class RankingService:
 # Inicializa o FastAPI
 app = FastAPI()
 redis_service = RedisQuizService(redis_client)
+delete_quiz = DeleteQuiz(redis_client)
 ranking_service = RankingService(redis_service)
 
 # Roteamento
@@ -347,3 +413,29 @@ async def ranking_acerto(quiz_id: str):
 async def ranking_geral(quiz_id: str):
     combined_ranking = ranking_service.get_combined_ranking(quiz_id)
     return {"ranking_geral": combined_ranking}
+
+
+@app.delete("/quizzes/votos-e-respostas/")
+async def delete_all_votes_and_user_responses():
+    return delete_quiz.delete_all_votes_and_user_responses()
+
+# Rota para excluir todos as respostas corretas e tempo de resposta
+
+
+@app.delete("/quizzes/responses-time-and-aswers/")
+async def delete_all_responses_time_and_aswers():
+    return delete_quiz.delete_all_responses_time_and_answers()
+
+# Rota para excluir todos os quizzes
+
+
+@app.delete("/quizzes/")
+async def delete_all_quizzes():
+    return delete_quiz.delete_all_quizzes()
+
+# Apaga um quiz específico
+
+
+@app.delete("/quizzes/{quiz_id}")
+async def delete_quizzes(quiz_id: str):
+    return delete_quiz.delete_quiz(quiz_id)

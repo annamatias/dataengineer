@@ -1,0 +1,438 @@
+{
+	"info": {
+		"_postman_id": "6cb0f5a5-c5ad-4b36-9ab9-3c4719e544cc",
+		"name": "api_redis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13218737"
+	},
+	"item": [
+		{
+			"name": "quizzes",
+			"item": [
+				{
+					"name": "Obter quiz específico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/quiz:quiz_de_geografia",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								"quiz:quiz_de_geografia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar quizzes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar quiz específico com perguntas",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"quizzes\": [\n    {\n      \"title\": \"Quiz de Geografia\",\n      \"questions\": [\n        {\n          \"question\": \"Qual é a capital da França?\",\n          \"alternatives\": [\n            [\"A\", \"Paris\"],\n            [\"B\", \"Londres\"],\n            [\"C\", \"Roma\"],\n            [\"D\", \"Berlim\"]\n          ],\n          \"correct_answer\": \"A\"\n        },\n        {\n          \"question\": \"Em que continente fica o Brasil?\",\n          \"alternatives\": [\n            [\"A\", \"América do Sul\"],\n            [\"B\", \"África\"],\n            [\"C\", \"Europa\"],\n            [\"D\", \"Ásia\"]\n          ],\n          \"correct_answer\": \"A\"\n        },\n        {\n          \"question\": \"Qual é o maior oceano do mundo?\",\n          \"alternatives\": [\n            [\"A\", \"Oceano Pacífico\"],\n            [\"B\", \"Oceano Atlântico\"],\n            [\"C\", \"Oceano Índico\"],\n            [\"D\", \"Oceano Ártico\"]\n          ],\n          \"correct_answer\": \"A\"\n        },\n        {\n          \"question\": \"Qual é o maior país do mundo em termos de área?\",\n          \"alternatives\": [\n            [\"A\", \"Rússia\"],\n            [\"B\", \"Canadá\"],\n            [\"C\", \"Estados Unidos\"],\n            [\"D\", \"China\"]\n          ],\n          \"correct_answer\": \"A\"\n        },\n        {\n          \"question\": \"Onde está localizada a Grande Muralha da China?\",\n          \"alternatives\": [\n            [\"A\", \"China\"],\n            [\"B\", \"Japão\"],\n            [\"C\", \"Coréia do Sul\"],\n            [\"D\", \"Vietnã\"]\n          ],\n          \"correct_answer\": \"A\"\n        },\n        {\n          \"question\": \"Qual é o ponto mais alto do mundo?\",\n          \"alternatives\": [\n            [\"A\", \"Monte Everest\"],\n            [\"B\", \"Monte Kilimanjaro\"],\n            [\"C\", \"Monte Aconcágua\"],\n            [\"D\", \"Monte McKinley\"]\n          ],\n          \"correct_answer\": \"A\"\n        }\n      ]\n    }\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "deletar dados",
+			"item": [
+				{
+					"name": "Apagar todos os quizzes",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar votos e respostas",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/votos-e-respostas/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								"votos-e-respostas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar quiz específico",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/quiz_de_hist\\xc3\\xb3ria_do_brasil",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								"quiz_de_hist",
+								"xc3",
+								"xb3ria_do_brasil"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar todas as respostas e perguntas com respostas corretas",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/responses-time-and-aswers/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								"responses-time-and-aswers",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Votos",
+			"item": [
+				{
+					"name": "Resultado do quiz [NRT]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/quiz_de_geografia/resultados/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								"quiz_de_geografia",
+								"resultados",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Responder/votar em um quiz com pergunta específica",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/quiz:quiz_de_geografia/votar/?question_index=2&alternative=A&user_id=clarissa",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								"quiz:quiz_de_geografia",
+								"votar",
+								""
+							],
+							"query": [
+								{
+									"key": "question_index",
+									"value": "2"
+								},
+								{
+									"key": "alternative",
+									"value": "A"
+								},
+								{
+									"key": "user_id",
+									"value": "clarissa"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ranking",
+			"item": [
+				{
+					"name": "Ranking questões mais acertadas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/quiz_de_geografia/ranking/questoes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								"quiz_de_geografia",
+								"ranking",
+								"questoes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ranking das alternativas mais votadas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/quiz_de_geografia/ranking/alternativas/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								"quiz_de_geografia",
+								"ranking",
+								"alternativas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ranking com mais abstenções",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/quiz_de_geografia/ranking/abstencao/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								"quiz_de_geografia",
+								"ranking",
+								"abstencao",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ranking com tempo de resposta por questão",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/quiz_de_geografia/ranking/tempo_medio/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								"quiz_de_geografia",
+								"ranking",
+								"tempo_medio",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ranking de alunos com maior acerto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/quiz_de_geografia/ranking/acerto/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								"quiz_de_geografia",
+								"ranking",
+								"acerto",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ranking de alunos mais rápidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/quizzes/quiz_de_geografia/ranking/rapidez/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"quizzes",
+								"quiz_de_geografia",
+								"ranking",
+								"rapidez",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
