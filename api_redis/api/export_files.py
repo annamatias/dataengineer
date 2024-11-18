@@ -1,19 +1,6 @@
 import os
 import json
-import redis
-from dotenv import load_dotenv
-
-load_dotenv()
-redis_host = os.getenv("REDIS_HOST")
-redis_port = os.getenv("REDIS_PORT")
-redis_password = os.getenv("REDIS_PASSWORD")
-
-
-redis_client = redis.Redis(
-    host=redis_host,
-    port=int(redis_port),
-    password=redis_password
-)
+from api.main import redis_client
 
 
 def export_redis_data_to_file(file_path):
