@@ -255,26 +255,31 @@ class RankingService:
         while True:
             try:
                 votos = self.redis_service.get_votes_for_question(
-                    quiz_id, question_index
-                )
+                    quiz_id, question_index)
                 if not votos:
                     break
-                max_votes = max(votos.values())
-                alternativas_max = [
-                    alt for alt, count in votos.items() if count == max_votes
-                ]
+
+                # Transformar os votos em uma lista ordenada de dicionários
+                alternativas_ranking = sorted(
+                    [{"alternative": alt, "votes": count}
+                        for alt, count in votos.items()],
+                    key=lambda x: x["votes"],
+                    reverse=True
+                )
+
                 rankings.append(
                     {
                         "pergunta": f"Pergunta {question_index + 1}",
-                        "alternativas_mais_votadas": alternativas_max,
-                        "votos": max_votes,
+                        "ranking_alternativas": alternativas_ranking,
                     }
                 )
             except ValueError:
                 break
             question_index += 1
+
         if not rankings:
             raise ValueError("Nenhum ranking encontrado para este quiz.")
+
         return rankings
 
     def get_question_ranking(self, quiz_id: str) -> List[Dict]:
@@ -295,6 +300,26 @@ class RankingService:
         if not question_ranking:
             raise ValueError("Nenhum ranking de questões encontrado.")
         return question_ranking
+
+    def get_student_ranking(self, quiz_id: str) -> List[Dict]:
+        # correct_answers:quiz:quiz_de_geografia
+        correct_answers_key = f"correct_answers:quiz:{quiz_id}"
+        correct_answers_data = self.redis_service.redis_client.hgetall(
+            correct_answers_key)
+
+        if not correct_answers_data:
+            raise ValueError(
+                f"Nenhum dado de respostas corretas encontrado para o quiz:{quiz_id}")
+
+        ranking = [
+            {"student": k.decode("utf-8"),
+             "correct_answers": int(v.decode("utf-8"))}
+            for k, v in correct_answers_data.items()
+        ]
+
+        ranking.sort(key=lambda x: x["correct_answers"], reverse=True)
+
+        return ranking
 
     def get_abstention_ranking(self, quiz_id: str) -> List[Dict]:
         quiz_data = self.redis_service.get_quiz_data(quiz_id)
@@ -366,7 +391,10 @@ async def get_quiz(quiz_id: str):
 async def votar(quiz_id: str, question_index: int, alternative: str, user_id: str):
     if not redis_client.exists(quiz_id):
         raise HTTPException(status_code=404, detail="Quiz não encontrado.")
+
     quiz_data = json.loads(redis_client.get(quiz_id))
+    redis_client.set(quiz_id, json.dumps(quiz_data), ex=timedelta(days=30))
+
     if question_index < 0 or question_index >= len(quiz_data["questions"]):
         raise HTTPException(status_code=400, detail="Pergunta inválida.")
     question = quiz_data["questions"][question_index]
@@ -445,7 +473,7 @@ async def ranking_rapidez(quiz_id: str):
 @app.get("/quizzes/{quiz_id}/ranking/acerto/")
 async def ranking_acerto(quiz_id: str):
     try:
-        acerto_ranking = ranking_service.get_question_ranking(quiz_id)
+        acerto_ranking = ranking_service.get_student_ranking(quiz_id)
     except ValueError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
     return {"ranking_acerto": acerto_ranking}
