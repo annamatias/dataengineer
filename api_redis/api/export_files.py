@@ -1,7 +1,6 @@
 import os
 import json
 import redis
-from redis import Redis
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -10,23 +9,11 @@ redis_port = os.getenv("REDIS_PORT")
 redis_password = os.getenv("REDIS_PASSWORD")
 
 
-class RedisClient:
-    def __init__(self, host: str, port: int, password: str):
-        self.client = redis.Redis(host=host, port=port, password=password)
-
-    def get_client(self) -> Redis:
-        return self.client
-
-    def check_connection(self) -> bool:
-        try:
-            return self.client.ping()
-        except redis.ConnectionError:
-            return False
-
-
-redis_client = RedisClient(
-    host=redis_host, port=int(redis_port), password=redis_password
-).get_client()
+redis_client = redis.Redis(
+    host=redis_host,
+    port=int(redis_port),
+    password=redis_password
+)
 
 
 def export_redis_data_to_file(file_path):
@@ -71,4 +58,4 @@ def export_redis_data_to_file(file_path):
 
 
 export_redis_data_to_file(
-    '/Users/annakarolinymatias/Documents/repositorios/dataengineer/api_redis/database/redis_export.json')
+    'dataengineer/api_redis/database/redis_export.json')
