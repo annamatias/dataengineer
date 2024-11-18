@@ -1,262 +1,315 @@
-# Quiz API com FastAPI e Redis
+# Projeto: Gerenciador de Quizzes com FastAPI
 
-Este projeto implementa uma API para quizzes utilizando **FastAPI** e **Redis** para armazenar e gerenciar quizzes, perguntas, alternativas de respostas e resultados em tempo real. Ele permite criar quizzes, registrar votos, consultar resultados e rankings, além de controlar o tempo de resposta dos usuários.
+Este projeto é uma API para criação, gestão e análise de quizzes. Ele foi desenvolvido usando FastAPI e integra o uso do Redis para armazenamento e recuperação de dados.
 
----
+## Estrutura do Projeto
 
-## Pré-requisitos
+A estrutura de pastas está organizada da seguinte forma:
 
-Antes de rodar o projeto, você precisará de:
+```
+api_redis/
+│
+├── api/
+│   ├── __init__.py            # Inicialização do módulo API
+│   ├── export_files.py        # Exportação e importação de arquivos JSON
+│   └── main.py                # Arquivo principal com todos os endpoints
+│
+├── database/
+│   ├── redis_export.json      # Backup de dados exportados do Redis
+│   └── redis.json             # Arquivo de configuração ou importação
+│
+├── tests/
+│   ├── test_unitarios_main.py # Testes unitários para os endpoints
+│── |__init__.py            # Inicialização do módulo de testes
+|
+│── __init__.py
+│── api_redis.postman_collection.json  # Coleção para Postman
+│
+└── readme.md                  # Documentação principal do projeto
+```
 
-- **Python 3.7+**
-- **Redis**: Um servidor Redis ativo para armazenar os dados (você pode usar Redis na nuvem ou localmente).
+## Como Instalar e Executar o Projeto
 
-Instale as dependências necessárias com o seguinte comando:
+### Pré-requisitos
 
-- `pip install fastapi redis uvicorn`
-- `pip install python-dotenv`
+- Python 3.8 ou superior.
+- Redis configurado e rodando na máquina.
 
-Para iniciar o servidor FastAPI, execute o comando:
+### Passos para Instalação
 
-- `uvicorn main:app --reload`
+1. Clone o repositório:
 
-Caso você tiver problemas com o dotenv não estar funcionando com o modulo do uvicorn, tente utilizar o seguinte comando:
+   ```bash
+   git clone https://github.com/annamatias/dataengineer.git
+   cd dataengineer
 
-- `python3 -m uvicorn main:app --reload`
+2. Crie um ambiente virtual e ative-o:
 
-A aplicação estará disponível no endereço: <http://127.0.0.1:8000>.
+```
+python -m venv venv
+source venv/bin/activate  # Para sistemas Unix
+venv\Scripts\activate     # Para Windows
+```
 
-# Endpoints
+3. Instale as dependências:
 
-1. Criar Quiz
-`POST /quizzes/`
+`pip install -r requirements.txt`
 
-Cria um ou mais quizzes, cada um com suas respectivas perguntas e alternativas.
+Configure o Redis: Certifique-se de que o Redis está em execução e configure as variáveis de ambiente no arquivo .env:
 
-Exemplo de Body (JSON):
+```
+REDIS_HOST=<seu-host-redis>
+REDIS_PORT=<sua-porta-redis>
+REDIS_PASSWORD=<sua-senha-redis>
+```
 
-```json
+4. Inicie o servidor FastAPI:
+
+`uvicorn app.main:app --reload`
+
+Acesse a documentação interativa em <http://127.0.0.1:8000/docs>.
+
+# Endpoints da API
+
+1. Criar um novo quiz
+
+POST `/quizzes/`
+
+Request Body:
+
+```
 {
-  "quizzes": [
+  "title": "Quiz de Exemplo",
+  "questions": [
     {
-      "title": "Quiz de Exemplos",
-      "questions": [
-        {
-          "question": "Qual é a cor do céu?",
-          "alternatives": [
-            ["A", "Azul"],
-            ["B", "Verde"],
-            ["C", "Vermelho"],
-            ["D", "Amarelo"]
-          ],
-          "correct_answer": "A"
-        }
-      ]
+      "question": "Qual a capital do Brasil?",
+      "alternatives": [["Brasília", true], ["Rio de Janeiro", false]],
+      "correct_answer": "Brasília"
     }
   ]
 }
 ```
 
-Exemplo de Resposta (JSON):
+Response:
 
-```json
+```
 {
-  "message": "Quizzes criados com sucesso!",
-  "quiz_ids": ["quiz:quiz_de_exemplos"]
-}
-````
-
-2. Obter Todos os Quizzes
-`GET /quizzes/`
-
-Retorna todos os quizzes armazenados.
-
-Exemplo de Resposta (JSON):
-
-```json
-{
-  "quizzes": [
-    {
-      "quiz_id": "quiz:quiz_de_exemplos",
-      "title": "Quiz de Exemplos",
-      "questions": [...]
-    }
-  ]
+  "message": "Quiz criado com sucesso!",
+  "quiz_id": "abc123"
 }
 ```
 
-3. Obter Quiz Específico
-`GET /quizzes/{quiz_id}`
+2. Listar todos os quizzes
 
-Obtém os detalhes de um quiz específico pelo ID.
+GET `/quizzes/`
 
-Exemplo de Resposta (JSON):
+Response:
 
-```json
-{
-  "quiz": {
-    "quiz_id": "quiz:quiz_de_exemplos",
-    "title": "Quiz de Exemplos",
-    "questions": [...]
+```
+[
+  {
+    "quiz_id": "abc123",
+    "title": "Quiz de Exemplo"
   }
-}
+]
 ```
 
-4. Votar em uma Alternativa
-`POST /quizzes/{quiz_id}/votar/`
+3. Buscar um quiz pelo ID
 
-Registra o voto de um usuário em uma pergunta específica de um quiz.
+GET `/quizzes/{quiz_id}`
 
-Parâmetros:
+Response:
 
-- quiz_id: ID do quiz.
-- question_index: Índice da pergunta no quiz.
-- alternative: Alternativa selecionada.
-- user_id: ID do usuário.
-
-Exemplo de Body (JSON):
-
-```json
-
+```
 {
-  "question_index": 0,
-  "alternative": "A",
-  "user_id": "user_1"
+  "quiz_id": "abc123",
+  "title": "Quiz de Exemplo",
+  "questions": [...]
 }
 ```
 
-Exemplo de Resposta (JSON):
+4. Votar em uma pergunta de um quiz
 
-```json
+POST `/quizzes/{quiz_id}/votar/`
+
+Query Params:
+
+```
+question_index: Índice da pergunta.
+alternative: Alternativa escolhida.
+user_id: Identificação do usuário.
+```
+
+Response:
+
+```
 {
   "message": "Voto registrado com sucesso!"
 }
 ```
 
-5. Visualizar Resultados
-`GET /quizzes/{quiz_id}/resultados/`
+5. Visualizar resultados de um quiz
 
-Retorna os resultados (votos) de todas as perguntas de um quiz.
+GET `/quizzes/{quiz_id}/resultados/`
 
-Exemplo de Resposta (JSON):
+Response:
 
-```json
+```
 {
-  "resultados": [
-    {
-      "pergunta": "Qual é a cor do céu?",
-      "votos": {
-        "A": 10,
-        "B": 2,
-        "C": 0,
-        "D": 0
+  "resultados": {
+    "question_1": {
+      "alternatives": {
+        "Brasília": 10,
+        "Rio de Janeiro": 2
       }
     }
-  ]
+  }
 }
 ```
 
-6. Ranking de Alternativas Mais Votadas
-`GET /quizzes/{quiz_id}/ranking/alternativas/`
+6. Ranking de alternativas
 
-Retorna o ranking de alternativas mais votadas para cada pergunta de um quiz.
+GET `/quizzes/{quiz_id}/ranking/alternativas/`
 
-Exemplo de Resposta (JSON):
+Response:
 
-```json
+```
 {
   "ranking": [
-    {
-      "question": "Qual é a cor do céu?",
-      "alternative": "A",
-      "votes": 10
-    }
+    {"alternative": "Brasília", "votes": 10},
+    {"alternative": "Rio de Janeiro", "votes": 2}
   ]
 }
 ```
 
-7. Ranking de Questões Mais Acertadas
-`GET /quizzes/{quiz_id}/ranking/questoes/`
+7. Ranking por questão
 
-Retorna o ranking de questões mais acertadas pelos usuários.
+GET `/quizzes/{quiz_id}/ranking/questoes/`
 
-Exemplo de Resposta (JSON):
+Response:
 
-```json
+```
 {
   "question_ranking": [
-    {
-      "question": "Qual é a cor do céu?",
-      "correct_answers": 12
-    }
+    {"question": "Qual a capital do Brasil?", "votes": 12}
   ]
 }
 ```
 
-8. Ranking de Abstenções
-`GET /quizzes/{quiz_id}/ranking/abstencao/`
+8. Ranking de abstenção
 
-Retorna o ranking de questões com mais abstenções.
+GET `/quizzes/{quiz_id}/ranking/abstencao/`
 
-Exemplo de Resposta (JSON):
+Response:
 
-```json
+```
 {
   "abstencao_ranking": [
-    {
-      "question": "Qual é a cor do céu?",
-      "abstencao": 5
-    }
+    {"question": "Qual a capital do Brasil?", "abstencoes": 5}
   ]
 }
 ```
 
-9. Ranking de Tempo Médio de Resposta
-`GET /quizzes/{quiz_id}/ranking/tempo_medio/`
+9. Ranking de tempo médio de resposta
 
-Retorna o tempo médio de resposta por questão.
+GET `/quizzes/{quiz_id}/ranking/tempo_medio/`
 
-Exemplo de Resposta (JSON):
+Response:
 
-```json
+```
 {
   "tempo_medio_ranking": [
-    {
-      "question": "Qual é a cor do céu?",
-      "avg_time": 12.5
-    }
+    {"question": "Qual a capital do Brasil?", "tempo_medio": 2.5}
   ]
 }
 ```
 
-10. Excluir Todos os Quizzes
-`DELETE /quizzes/`
+10. Ranking de rapidez
 
-Remove todos os quizzes armazenados no Redis.
+GET `/quizzes/{quiz_id}/ranking/rapidez/`
 
-Exemplo de Resposta (JSON):
+Response:
 
-```json
+```
 {
-  "message": "Todos os quizzes foram apagados."
+  "rapidez_ranking": [
+    {"user_id": "user1", "response_time": 1.2}
+  ]
 }
 ```
 
-11. Excluir Todos os Votos e Respostas de Usuários
-`DELETE /quizzes/votos-e-respostas/`
+11. Ranking de acertos
 
-Remove todos os votos e respostas de usuários.
+GET `/quizzes/{quiz_id}/ranking/acerto/`
 
-Exemplo de Resposta (JSON):
+Response:
 
-```json
+```
 {
-  "message": "Todos os votos e respostas de usuários foram apagados."
+  "ranking_acerto": [
+    {"user_id": "user1", "acertos": 5}
+  ]
 }
 ```
 
-# Tecnologias Utilizadas
+12. Ranking geral
 
-- FastAPI: Framework para construção da API.
-- Redis: Banco de dados em memória para armazenamento de quizzes, votos e rankings.
-- Uvicorn: Servidor ASGI para executar a aplicação FastAPI.
+GET `/quizzes/{quiz_id}/ranking/geral/`
+
+Response:
+
+```
+{
+  "ranking_geral": [
+    {"user_id": "user1", "pontos": 50}
+  ]
+}
+```
+
+13. Deletar todos os votos e respostas de usuários
+
+DELETE `/quizzes/votos-e-respostas/`
+
+Response:
+
+```
+{
+  "message": "Todos os votos e respostas foram excluídos."
+}
+```
+
+14. Deletar respostas e tempos de resposta
+
+DELETE `/quizzes/responses-time-and-aswers/`
+
+Response:
+
+```
+{
+  "message": "Respostas e tempos de resposta excluídos."
+}
+```
+
+15. Deletar todos os quizzes
+
+DELETE `/quizzes/`
+
+Response:
+
+```
+{
+  "message": "Todos os quizzes foram excluídos."
+}
+```
+
+16. Deletar um quiz específico
+
+DELETE `/quizzes/{quiz_id}`
+
+Response:
+
+```
+{
+  "message": "Quiz excluído com sucesso."
+}
+```
