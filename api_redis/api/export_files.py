@@ -1,4 +1,3 @@
-import os
 import json
 from api.main import redis_client
 
