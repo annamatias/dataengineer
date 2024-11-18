@@ -10,22 +10,22 @@ A estrutura de pastas está organizada da seguinte forma:
 api_redis/
 │
 ├── api/
-│   ├── __init__.py            # Inicialização do módulo API
-│   ├── export_files.py        # Exportação e importação de arquivos JSON
-│   └── main.py                # Arquivo principal com todos os endpoints
+│   ├── __init__.py
+│   ├── export_files.py        # Arquivo de exportação de todo conteúdo dentro do Redis
+│   └── main.py                # Arquivo principal com todos os endpoints, construção de código e utilização de comandos do Redis
 │
 ├── database/
-│   ├── redis_export.json      # Backup de dados exportados do Redis
-│   └── redis.json             # Arquivo de configuração ou importação
+│   ├── redis_export.json      # Dados exportados do Redis
+│   └── redis.json
 │
 ├── tests/
-│   ├── test_unitarios_main.py # Testes unitários para os endpoints
-│── |__init__.py            # Inicialização do módulo de testes
+│   ├── test_unitarios_main.py
+│── |__init__.py
 |
 │── __init__.py
 │── api_redis.postman_collection.json  # Coleção para Postman
 │
-└── readme.md                  # Documentação principal do projeto
+└── readme.md
 ```
 
 ## Como Instalar e Executar o Projeto
