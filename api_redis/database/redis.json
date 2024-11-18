@@ -1,0 +1,44 @@
+[
+  {
+    "compressor": "NONE",
+    "id": "71e81fc4-dd7a-48d6-8eb9-3734983339ac",
+    "host": "redis-17224.c93.us-east-1-3.ec2.redns.redis-cloud.com",
+    "port": 17224,
+    "name": "db-data-engineering",
+    "db": null,
+    "username": null,
+    "password": "UtRsPtFRSlKJWTCc21uWvkiO4jyGgfA3",
+    "connectionType": "STANDALONE",
+    "nameFromProvider": "db-data-engineering",
+    "provider": "RE_CLOUD",
+    "lastConnection": "2024-11-18T02:27:07.866Z",
+    "modules": [
+      {
+        "name": "searchlight",
+        "version": 21008
+      },
+      {
+        "name": "ReJSON",
+        "version": 20804,
+        "semanticVersion": "2.8.4"
+      },
+      {
+        "name": "bf",
+        "version": 20802,
+        "semanticVersion": "2.8.2"
+      },
+      {
+        "name": "timeseries",
+        "version": 11203,
+        "semanticVersion": "1.12.3"
+      }
+    ],
+    "tls": null,
+    "tlsServername": null,
+    "verifyServerCert": null,
+    "caCert": null,
+    "clientCert": null,
+    "ssh": null,
+    "sshOptions": null
+  }
+]

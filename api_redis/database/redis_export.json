@@ -1,0 +1,136 @@
+{
+    "vote:quiz:quiz_de_geografia:0": {
+        "type": "hash",
+        "fields": {
+            "A": "2",
+            "B": "1",
+            "C": "1",
+            "D": "0"
+        }
+    },
+    "vote:quiz:quiz_de_geografia:3": {
+        "type": "hash",
+        "fields": {
+            "A": "0",
+            "B": "0",
+            "C": "0",
+            "D": "0"
+        }
+    },
+    "user_responses:quiz:quiz_de_geografia:amanda": {
+        "type": "hash",
+        "fields": {
+            "0": "B"
+        }
+    },
+    "response_time:quiz:quiz_de_geografia:anna": {
+        "type": "hash",
+        "fields": {
+            "0": "0.15021491050720215"
+        }
+    },
+    "response_time:quiz:quiz_de_geografia:amanda": {
+        "type": "hash",
+        "fields": {
+            "0": "0.14108705520629883"
+        }
+    },
+    "vote:quiz:quiz_de_geografia:2": {
+        "type": "hash",
+        "fields": {
+            "A": "0",
+            "B": "0",
+            "C": "0",
+            "D": "0"
+        }
+    },
+    "quiz:quiz_de_geografia": {
+        "type": "string",
+        "value": "{\"title\": \"Quiz de Geografia\", \"questions\": [{\"question\": \"Qual \\u00e9 a capital da Fran\\u00e7a?\", \"alternatives\": [[\"A\", \"Paris\"], [\"B\", \"Londres\"], [\"C\", \"Roma\"], [\"D\", \"Berlim\"]], \"correct_answer\": \"A\"}, {\"question\": \"Em que continente fica o Brasil?\", \"alternatives\": [[\"A\", \"Am\\u00e9rica do Sul\"], [\"B\", \"\\u00c1frica\"], [\"C\", \"Europa\"], [\"D\", \"\\u00c1sia\"]], \"correct_answer\": \"A\"}, {\"question\": \"Qual \\u00e9 o maior oceano do mundo?\", \"alternatives\": [[\"A\", \"Oceano Pac\\u00edfico\"], [\"B\", \"Oceano Atl\\u00e2ntico\"], [\"C\", \"Oceano \\u00cdndico\"], [\"D\", \"Oceano \\u00c1rtico\"]], \"correct_answer\": \"A\"}, {\"question\": \"Qual \\u00e9 o maior pa\\u00eds do mundo em termos de \\u00e1rea?\", \"alternatives\": [[\"A\", \"R\\u00fassia\"], [\"B\", \"Canad\\u00e1\"], [\"C\", \"Estados Unidos\"], [\"D\", \"China\"]], \"correct_answer\": \"A\"}, {\"question\": \"Onde est\\u00e1 localizada a Grande Muralha da China?\", \"alternatives\": [[\"A\", \"China\"], [\"B\", \"Jap\\u00e3o\"], [\"C\", \"Cor\\u00e9ia do Sul\"], [\"D\", \"Vietn\\u00e3\"]], \"correct_answer\": \"A\"}, {\"question\": \"Qual \\u00e9 o ponto mais alto do mundo?\", \"alternatives\": [[\"A\", \"Monte Everest\"], [\"B\", \"Monte Kilimanjaro\"], [\"C\", \"Monte Aconc\\u00e1gua\"], [\"D\", \"Monte McKinley\"]], \"correct_answer\": \"A\"}]}"
+    },
+    "vote:quiz:quiz_de_geografia:5": {
+        "type": "hash",
+        "fields": {
+            "A": "0",
+            "B": "0",
+            "C": "0",
+            "D": "0"
+        }
+    },
+    "user_responses:quiz:quiz_de_geografia:natalia": {
+        "type": "hash",
+        "fields": {
+            "0": "A"
+        }
+    },
+    "correct_answers:quiz:quiz_de_geografia": {
+        "type": "hash",
+        "fields": {
+            "anna": "1",
+            "natalia": "1"
+        }
+    },
+    "vote:quiz:quiz_de_geografia:4": {
+        "type": "hash",
+        "fields": {
+            "A": "0",
+            "B": "0",
+            "C": "0",
+            "D": "0"
+        }
+    },
+    "response_time:quiz:quiz_de_geografia:clarissa": {
+        "type": "hash",
+        "fields": {
+            "0": "0.14385414123535156"
+        }
+    },
+    "response_time:quiz:quiz_de_geografia:natalia": {
+        "type": "hash",
+        "fields": {
+            "0": "0.1498701572418213"
+        }
+    },
+    "vote:quiz:quiz_de_geografia:1": {
+        "type": "hash",
+        "fields": {
+            "A": "0",
+            "B": "0",
+            "C": "0",
+            "D": "0"
+        }
+    },
+    "user_responses:quiz:quiz_de_geografia:clarissa": {
+        "type": "hash",
+        "fields": {
+            "0": "C"
+        }
+    },
+    "response_time_rank:quiz:quiz_de_geografia": {
+        "type": "zset",
+        "members": [
+            {
+                "member": "amanda",
+                "score": 0.14108705520629883
+            },
+            {
+                "member": "clarissa",
+                "score": 0.14385414123535156
+            },
+            {
+                "member": "natalia",
+                "score": 0.1498701572418213
+            },
+            {
+                "member": "anna",
+                "score": 0.15021491050720215
+            }
+        ]
+    },
+    "user_responses:quiz:quiz_de_geografia:anna": {
+        "type": "hash",
+        "fields": {
+            "0": "A"
+        }
+    }
+}
